@@ -5,8 +5,18 @@ void main() {
     home: NinjaCard(),
   ));}
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
   const NinjaCard({super.key});
+
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+
+  int userLevel = 0;
+  String name = "John Doe";
+  String email = "john.doe@gmail.com";
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +27,15 @@ class NinjaCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            userLevel+=1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[850],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -42,7 +61,7 @@ class NinjaCard extends StatelessWidget {
             ),
             const SizedBox(height: 10,),
             Text(
-              "John Doe",
+              "$name",
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2,
@@ -60,7 +79,7 @@ class NinjaCard extends StatelessWidget {
             ),
             SizedBox(height: 10,),
             Text(
-              "8",
+              "$userLevel",
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2,
@@ -77,7 +96,7 @@ class NinjaCard extends StatelessWidget {
                 ),
                 SizedBox(width: 10,),
                 Text(
-                  "john.doe@gmail.com",
+                  "$email",
                   style: TextStyle(
                     color: Colors.grey[400],
                     fontSize: 19,
@@ -92,4 +111,5 @@ class NinjaCard extends StatelessWidget {
     );
   }
 }
+
 
